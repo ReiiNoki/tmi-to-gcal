@@ -94,14 +94,13 @@ npm test
 项目已经包含一套上架材料：
 
 - `PRIVACY.md`：仓库中的隐私政策
-- `docs/privacy.html`：可通过 GitHub Pages 发布的公开隐私政策页面
 - `store-listing/listing-zh-CN.md`：商品名称、简短说明和详细说明
 - `store-listing/privacy-form-zh-CN.md`：单一用途、权限理由和数据披露填写稿
 - `store-listing/release-checklist.md`：从注册开发者账号到公开发布的检查清单
 - `store-assets/`：商店截图和宣传图
 - `release/`：可直接上传到 Chrome Web Store 的 ZIP
 
-公开隐私政策页面：<https://reiinoki.dpdns.org/tmi-to-gcal/privacy.html>
+公开隐私政策：<https://github.com/ReiiNoki/tmi-to-gcal/blob/main/PRIVACY.md>
 
 商店提交的逐项步骤见 `store-listing/release-checklist.md`。
 
@@ -115,7 +114,6 @@ tencent-meeting-to-google-calendar/
 ├── popup.js
 ├── parser.js
 ├── icons/
-├── docs/
 ├── store-assets/
 ├── store-listing/
 ├── release/
