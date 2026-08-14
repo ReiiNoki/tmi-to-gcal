@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1280, initial-scale=1" />
+    <title>Chrome Web Store Screenshot</title>
+    <link rel="stylesheet" href="store-artwork.css" />
+  </head>
+  <body class="screenshot">
+    <main class="screenshot-canvas">
+      <section class="copy">
+        <div class="brand-row">
+          <img src="../../icons/icon-128.png?v=2" alt="" />
+          <div>
+            <strong>TMI to GCal</strong>
+            <span>浏览器本地解析，不上传邀请内容</span>
+          </div>
+        </div>
+        <p class="eyebrow" id="eyebrow">从复制到日程，只需几步</p>
+        <h1 id="headline">复制邀请，自动整理成日程</h1>
+        <p class="lead" id="lead">识别会议主题、时间、链接与会议号，所有字段都能在打开日历前检查和修改。</p>
+        <div class="feature-list" id="featureList">
+          <div class="feature-item"><b>✓</b><span>兼容常见中文邀请格式</span></div>
+          <div class="feature-item"><b>✓</b><span>支持手动粘贴和剪贴板读取</span></div>
+          <div class="feature-item"><b>✓</b><span>不读取已有 Google Calendar 数据</span></div>
+        </div>
+      </section>
+      <section class="popup-stage" aria-label="扩展实际界面">
+        <iframe id="extensionPreview" src="../../popup.html?brand=3" title="TMI to GCal 扩展界面"></iframe>
+      </section>
+    </main>
+
+    <script>
+      const samples = {
+        parse: {
+          eyebrow: "从复制到日程，只需几步",
+          headline: "复制邀请，自动整理成日程",
+          lead: "识别会议主题、时间、链接与会议号，所有字段都能在打开日历前检查和修改。",
+          features: ["兼容常见中文邀请格式", "支持手动粘贴和剪贴板读取", "不读取已有 Google Calendar 数据"],
+        },
+        account: {
+          eyebrow: "适合同时登录多个账号",
+          headline: "给 Google 账号取个好认的名字",
+          lead: "先打开对应日历确认账号，再保存“私人 Gmail”或“工作账号”等本地名称。",
+          features: ["支持多个已登录的 Google 账号", "账号名称仅保存在本机", "创建前随时切换目标账号"],
+        },
+        review: {
+          eyebrow: "打开日历前再确认一次",
+          headline: "日程字段清楚、可编辑",
+          lead: "标题、时间、时区、会议链接、会议号和说明都能修改，确认后再打开 Google Calendar。",
+          features: ["默认支持 Asia/Shanghai", "会议链接和会议号保留在说明中", "由你在 Google Calendar 最终保存"],
+        },
+      };
+
+      const params = new URLSearchParams(location.search);
+      const mode = params.get("mode") || "parse";
+      const content = samples[mode] || samples.parse;
+      document.querySelector("#eyebrow").textContent = content.eyebrow;
+      document.querySelector("#headline").textContent = content.headline;
+      document.querySelector("#lead").textContent = content.lead;
+      document.querySelector("#featureList").replaceChildren(
+        ...content.features.map((feature) => {
+          const row = document.createElement("div");
+          row.className = "feature-item";
+          row.innerHTML = `<b>✓</b><span>${feature}</span>`;
+          return row;
+        }),
+      );
+
+      const invitation = `腾讯会议邀请您参加会议
+会议主题：产品需求评审会
+会议时间：2026/08/18 19:00-20:00 (GMT+08:00) 中国标准时间 - 北京
+
+点击链接入会：
+https://meeting.tencent.com/dm/demo2026
+
+#腾讯会议：123-456-789`;
+
+      const extensionPreview = document.querySelector("#extensionPreview");
+
+      function initializePreview() {
+        if (extensionPreview.dataset.initialized === "true") return;
+        const doc = extensionPreview.contentDocument;
+        const win = extensionPreview.contentWindow;
+        const invitationField = doc.querySelector("#invitationText");
+        if (!invitationField) return;
+        extensionPreview.dataset.initialized = "true";
+        invitationField.value = invitation;
+        invitationField.dispatchEvent(new win.Event("input", { bubbles: true }));
+
+        win.setTimeout(() => {
+          if (mode === "account") {
+            doc.querySelector("#editAccountLabelsButton").click();
+            doc.querySelector('[data-account-label="0"]').value = "私人 Gmail";
+            doc.querySelector('[data-account-label="1"]').value = "工作账号";
+          }
+
+          if (mode === "review") {
+            const account = doc.querySelector("#googleAccount");
+            account.options[1].textContent = "工作账号";
+            account.value = "1";
+            doc.querySelector(".app-shell").scrollTop = 300;
+          }
+        }, 500);
+      }
+
+      extensionPreview.addEventListener("load", initializePreview);
+      if (extensionPreview.contentDocument?.readyState === "complete") initializePreview();
+    </script>
+  </body>
+</html>

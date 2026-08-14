@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1400, initial-scale=1" />
+    <title>Marquee Promo Tile</title>
+    <link rel="stylesheet" href="store-artwork.css" />
+  </head>
+  <body class="promo-marquee">
+    <main class="marquee-canvas">
+      <section class="marquee-copy">
+        <div class="marquee-brand">
+          <img src="../../icons/icon-128.png?v=2" alt="" />
+          <span>TMI to GCal</span>
+        </div>
+        <h1>复制会议邀请<br />快速创建日程</h1>
+        <p>自动识别标题、时间、链接和会议号。先检查，再选择希望使用的 Google 账号。</p>
+        <div class="marquee-route"><span>腾讯会议邀请</span><i></i><span>Google Calendar</span></div>
+      </section>
+      <section class="marquee-popup" aria-label="扩展实际界面">
+        <iframe id="extensionPreview" src="../../popup.html?brand=3" title="TMI to GCal 扩展界面"></iframe>
+      </section>
+    </main>
+
+    <script>
+      const invitation = `腾讯会议邀请您参加会议
+会议主题：产品需求评审会
+会议时间：2026/08/18 19:00-20:00
+点击链接入会：https://meeting.tencent.com/dm/demo2026
+#腾讯会议：123-456-789`;
+
+      const extensionPreview = document.querySelector("#extensionPreview");
+
+      function initializePreview() {
+        if (extensionPreview.dataset.initialized === "true") return;
+        const doc = extensionPreview.contentDocument;
+        const win = extensionPreview.contentWindow;
+        const field = doc.querySelector("#invitationText");
+        if (!field) return;
+        extensionPreview.dataset.initialized = "true";
+        field.value = invitation;
+        field.dispatchEvent(new win.Event("input", { bubbles: true }));
+      }
+
+      extensionPreview.addEventListener("load", initializePreview);
+      if (extensionPreview.contentDocument?.readyState === "complete") initializePreview();
+    </script>
+  </body>
+</html>
