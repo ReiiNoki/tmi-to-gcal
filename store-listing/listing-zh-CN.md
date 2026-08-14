@@ -50,7 +50,7 @@ TMI to GCal - 腾讯会议邀请导入 Google 日历
 
 ## 隐私政策 URL
 
-`https://reiinoki.github.io/tmi-to-gcal/privacy.html`
+`https://reiinoki.dpdns.org/tmi-to-gcal/privacy.html`
 
 ## 内容分级
 

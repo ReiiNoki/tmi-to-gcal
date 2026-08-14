@@ -101,7 +101,7 @@ npm test
 - `store-assets/`：商店截图和宣传图
 - `release/`：可直接上传到 Chrome Web Store 的 ZIP
 
-公开隐私政策页面：<https://reiinoki.github.io/tmi-to-gcal/privacy.html>
+公开隐私政策页面：<https://reiinoki.dpdns.org/tmi-to-gcal/privacy.html>
 
 商店提交的逐项步骤见 `store-listing/release-checklist.md`。
 

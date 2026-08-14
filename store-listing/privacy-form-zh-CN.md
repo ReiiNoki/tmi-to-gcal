@@ -41,4 +41,4 @@
 
 ## 隐私政策 URL
 
-`https://reiinoki.github.io/tmi-to-gcal/privacy.html`
+`https://reiinoki.dpdns.org/tmi-to-gcal/privacy.html`
