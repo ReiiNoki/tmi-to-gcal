@@ -2,6 +2,10 @@
 
 一个简洁的 Chrome / Edge Manifest V3 扩展。它把腾讯会议桌面端复制出的邀请文本解析为可编辑的 Google Calendar 日程，并打开 Google Calendar 的新建日程页面。
 
+**[从 Chrome Web Store 安装](https://chromewebstore.google.com/detail/abjdheloeafcegboabinhnmbmdgdpjfb)**
+
+本扩展已在 Chrome Web Store 上架。普通用户建议直接从商店安装，仓库中的 ZIP 和开发者模式安装方式主要用于测试与开发。
+
 ## 功能
 
 - 从剪贴板读取腾讯会议“完整邀请 / 复制邀请”文本，也支持手动粘贴
@@ -13,7 +17,15 @@
 - 所有解析均在浏览器本机完成，不上传、不存储邀请内容
 - 仅申请剪贴板读取权限，不申请 Google 账号、浏览历史或网页内容权限
 
-## 安装到 Chrome
+## 安装
+
+### Chrome Web Store（推荐）
+
+1. 打开 [TMI to GCal 的 Chrome Web Store 页面](https://chromewebstore.google.com/detail/abjdheloeafcegboabinhnmbmdgdpjfb)。
+2. 点击“添加至 Chrome”，按浏览器提示完成安装。
+3. 可在浏览器工具栏的扩展菜单中固定“TMI to GCal”。
+
+### Chrome 开发者模式
 
 1. 解压下载的 ZIP 文件。
 2. 在地址栏打开 `chrome://extensions/`。
@@ -22,7 +34,7 @@
 5. 选择解压后的 `tencent-meeting-to-google-calendar` 文件夹。
 6. 可在浏览器工具栏的扩展菜单中固定“TMI to GCal”。
 
-## 安装到 Edge
+### Edge 开发者模式
 
 1. 解压下载的 ZIP 文件。
 2. 在地址栏打开 `edge://extensions/`。
@@ -89,9 +101,12 @@ npm test
 
 测试覆盖常见中文邀请、全角标点、跨日会议、缺少结束时间、会议号归一化和 Google Calendar URL 参数。
 
-## Chrome Web Store 上架材料
+## Chrome Web Store
 
-项目已经包含一套上架材料：
+- [商店安装页面](https://chromewebstore.google.com/detail/abjdheloeafcegboabinhnmbmdgdpjfb)
+- [隐私政策](https://github.com/ReiiNoki/tmi-to-gcal/blob/main/PRIVACY.md)
+
+仓库中同时保留了发布和维护所需的商店材料：
 
 - `PRIVACY.md`：仓库中的隐私政策
 - `store-listing/listing-zh-CN.md`：商品名称、简短说明和详细说明
@@ -100,9 +115,7 @@ npm test
 - `store-assets/`：商店截图和宣传图
 - `release/`：可直接上传到 Chrome Web Store 的 ZIP
 
-公开隐私政策：<https://github.com/ReiiNoki/tmi-to-gcal/blob/main/PRIVACY.md>
-
-商店提交的逐项步骤见 `store-listing/release-checklist.md`。
+后续版本的商店提交步骤见 `store-listing/release-checklist.md`。
 
 ## 项目结构
 
